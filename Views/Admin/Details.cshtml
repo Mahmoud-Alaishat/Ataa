@@ -1,0 +1,87 @@
+﻿@model Ataa.Models.RequestForm
+
+@{
+    ViewData["Title"] = "Request Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="container-fluid pl-0 pr-0">
+        <div class="row mb-2">
+            <div class="col-md-4 stretch-card pr-1">
+                <div style="background-color: #57a3d1" class="card card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            Start Date <i class="mdi mdi-calendar mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.StartDate)</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 stretch-card pr-1 pl-1">
+                <div style="background-color: #9272EF" class="card  card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            End Date <i class="mdi mdi-calendar-star mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.EndDate)</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 stretch-card pl-1">
+                <div style="background-color: #cb6f95; " class="card  card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            Number Of Grantees <i class="mdi mdi-account-group mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.NumberOfGrantee)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-4 stretch-card pr-1">
+                <div style="background-color: #009e82; " class="card card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            Start Time <i class="mdi mdi-timer-sand-empty mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.StartTime)</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 stretch-card pr-1 pl-1">
+                <div style="background-color: #EF9272;" class="card card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            End Time <i class="mdi mdi-timer-sand-full mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.EndTime)</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 stretch-card pl-1">
+                <div style="background-color: #4974a5;" class="card card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            Location <i class="mdi mdi-account-box mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-5">@Html.DisplayFor(model => model.Location)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="max-height:500px" class="row">
+            <div class="col stretch-card ">
+                <div style="background: linear-gradient(225deg, rgba(87,163,209,1) 16.60%, rgba(146,114,239,1) 33.20%, rgba(203,111,149,1) 49.80%,rgba(0,158,130,1) 66.40%, rgba(239,146,114,1) 83%, rgba(73,116,165,1) 100%); " class="card card-img-holder text-white">
+                    <div class="card-body">
+                        <h4 class="font-weight-normal mb-3">
+                            Service Description <i class="mdi mdi-gift mdi-24px float-right"></i>
+                        </h4>
+                        <h3 class="mt-4 font-weight-normal">@Html.DisplayFor(model => model.Service)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="d-flex justify-content-center mt-3">
+        <a class="btn btn-outline-light w-auto pt-3 pb-3 pr-5" asp-action="Requests"><i class="mdi mdi-keyboard-return mdi-18px mr-2"></i>Back</a>
+    </div>
+</div>

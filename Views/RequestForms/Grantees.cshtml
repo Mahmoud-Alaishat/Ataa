@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Ataa.Models.AttendUser>
+@{
+    ViewData["Title"] = "Grantees";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="row">
+    <div class="col pl-0 pr-0 h-100">
+        <div class="row h-100">
+            <div class="col-12 h-100">
+                <div class="card h-100">
+                    <div class="card-body h-100">
+                        <h4 class="card-title">Grantees</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th> Name </th>
+                                        <th> Phone Number </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{ 
+                                        int i = 1;
+                                        foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td> @i </td>
+                                            <td>  @Html.DisplayFor(modelItem => item.user.FirstName)  @Html.DisplayFor(modelItem => item.user.LastName) </td>
+                                            <td>  @Html.DisplayFor(modelItem => item.user.PhoneNumber)</td>
+                                        </tr>
+                                                i = i + 1;
+                                            }
+                                        }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-secondary w-auto" style="border-radius:4px">
+                    <div class="d-sm-flex">
+                        <span>
+                            <a class="btn btn-lg btn-light w-auto text-muted" asp-action="SDetails" asp-route-id="@ViewBag.formId">Back</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+</div>

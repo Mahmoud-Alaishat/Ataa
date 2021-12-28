@@ -1,0 +1,275 @@
+﻿@model Ataa.Models.RequestForm
+
+@{
+    ViewData["Title"] = "Request Service";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+   
+    h1 {
+        text-align: center;
+        color: white
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 30px;
+        width: 30px;
+        margin: 0 1px;
+        background-color: #04AA6D;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
+
+    .control-label {
+        color: white;
+        opacity: 0.8;
+    }
+</style>
+<div class="row h-75 pr-0 pl-0">
+    <div class="card bg-white shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-sm-8">
+                    <h3 class="mb-0"><i class="bi-plus-square"></i> Add Service</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" style="background-color: #71CD80; border-radius: 6px">
+            <form id="regForm" method="post" asp-action="Create">
+                <!-- Circles which indicates the steps of the form: -->
+                <div style="text-align:center;margin-bottom:5px;">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+                <div class="pl-lg-4 pr-lg-4">
+                    <div class="row">
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">
+                            <h6 class="heading-small text-white mb-4 font-weight-bold">Information about the Service:</h6>
+                            <div class="form-group">
+                                <input value="0" asp-for="UserId" class="form-control" />
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label text-white" for="input-email">Location</label>
+                                        <input asp-for="Location" class="form-control form-control-alternative rounded-2" />
+                                        <span asp-validation-for="Location" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group focused">
+                                        <label class="form-control-label text-white" for="input-username">Number Of Grantee</label>
+                                        <input asp-for="NumberOfGrantee" type="text" id="input-username" class="form-control form-control-alternative rounded-2" />
+                                        <span asp-validation-for="NumberOfGrantee" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="form-control-label text-white" for="input-username">Service</label>
+                                        <textarea id="input-username" style="height:300px;border-radius:6px" asp-for="Service" class="form-control form-control-alternative" required> </textarea>
+                                        <span asp-validation-for="Service" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input value="1" asp-for="StatusId" class="form-control col " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pl-lg-4 pr-lg-4">
+                    <div class="row">
+                        <div class="tab">
+                            <div class="row">
+                                <h6 class="heading-small text-white mb-4 font-weight-bold">Date:</h6>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="StartDate" class="control-label"></label>
+                                        <input asp-for="StartDate" class="form-control" />
+                                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="EndDate" class="control-label"></label>
+                                        <input asp-for="EndDate" class="form-control" />
+                                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <h6 class="heading-small text-white mb-4 mt-2 font-weight-bold">Time:</h6>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="StartTime" class="control-label"></label>
+                                        <input asp-for="StartTime" class="form-control" />
+                                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="EndTime" class="control-label"></label>
+                                        <input asp-for="EndTime" class="form-control" />
+                                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            <div class="d-flex justify-content-center">
+            <div class="d-flex">
+                <button style="background-color: #9272EF" class="btn  w-auto align-items-center rounded-2 text-white" type="button"  id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button style="background-color: #57a3d1" class="btn  w-auto align-items-center rounded-2 text-white" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+                @*<div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>*@
+
+                <script>
+                    var currentTab = 0; // Current tab is set to be the first tab (0)
+                    showTab(currentTab); // Display the current tab
+
+                    function showTab(n) {
+                        // This function will display the specified tab of the form...
+                        var x = document.getElementsByClassName("tab");
+                        x[n].style.display = "block";
+                        //... and fix the Previous/Next buttons:
+                        if (n == 0) {
+                            document.getElementById("prevBtn").style.display = "none";
+                        } else {
+                            document.getElementById("prevBtn").style.display = "inline";
+                        }
+                        if (n == (x.length - 1)) {
+                            document.getElementById("nextBtn").innerHTML = "Submit";
+                        } else {
+                            document.getElementById("nextBtn").innerHTML = "Next";
+                        }
+                        //... and run a function that will display the correct step indicator:
+                        fixStepIndicator(n)
+                    }
+
+                    function nextPrev(n) {
+                        // This function will figure out which tab to display
+                        var x = document.getElementsByClassName("tab");
+                        // Exit the function if any field in the current tab is invalid:
+                        if (n == 1 && !validateForm()) return false;
+                        // Hide the current tab:
+                        x[currentTab].style.display = "none";
+                        // Increase or decrease the current tab by 1:
+                        currentTab = currentTab + n;
+                        // if you have reached the end of the form...
+                        if (currentTab >= x.length) {
+                            // ... the form gets submitted:
+                            document.getElementById("regForm").submit();
+                            return false;
+                        }
+                        // Otherwise, display the correct tab:
+                        showTab(currentTab);
+                    }
+
+                    function validateForm() {
+                        // This function deals with validation of the form fields
+                        var x, y, z, i, valid = true;
+                        x = document.getElementsByClassName("tab");
+                        y = x[currentTab].getElementsByTagName("input");
+                        z = x[currentTab].getElementsByTagName("textarea");
+                        // A loop that checks every input field in the current tab:
+                        for (i = 0; i < y.length; i++) {
+                            // If a field is empty...
+                            if (y[i].value == "") {
+                                // add an "invalid" class to the field:
+                                y[i].className += " invalid";
+                                // and set the current valid status to false
+                                valid = false;
+                                if (z[0].value == "" && currentTab == 0) {
+                                    z[0].className += " invalid";
+                                    valid = false;
+                                }
+                            }
+
+                        }
+                        // If the valid status is true, mark the step as finished and valid:
+                        if (valid) {
+                            document.getElementsByClassName("step")[currentTab].className += " finish";
+                        }
+                        return valid; // return the valid status
+                    }
+
+                    function fixStepIndicator(n) {
+                        // This function removes the "active" class of all steps...
+                        var i, x = document.getElementsByClassName("step");
+                        for (i = 0; i < x.length; i++) {
+                            x[i].className = x[i].className.replace(" active", "");
+                        }
+                        //... and adds the "active" class on the current step:
+                        x[n].className += " active";
+                    }
+                </script>
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }

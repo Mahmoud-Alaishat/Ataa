@@ -1,0 +1,47 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+
+}
+
+<div class="col-xl-11 order-xl-1 pl-0 pr-0">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"><i class="bi-clipboard-data"></i> Personal Data</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6 mb-2">
+                            <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+                            <p>
+                                <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex">
+                        <form id="download-data" asp-page="DownloadPersonalData" method="post" class="form-group">
+                            <button type="submit" class="btn btn-primary w-auto pl-4 pr-4 align-items-center">Download</button>
+                        </form>
+                        <p>
+                            <a id="delete" asp-page="DeletePersonalData" type="submit" class="btn btn-danger w-auto pl-4 pr-4 align-items-center">Delete</a>
+                        </p>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Ataa.Models.RequestStatus>
+
+@{
+    ViewData["Title"] = "My Services";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+
+
+<div class="row">
+    <div class="col-12 grid-margin pr-0 pl-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">My Services</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    RequestID
+                                </th>
+                                <th>
+                                    Start Date
+                                </th>
+                                <th>
+                                    End Date
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                string sta = item.status.StatusName;
+
+                                if (sta == "On Progress" || sta == "Done")
+                                {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.EndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.Location)
+                                </td>
+
+                                <td>
+
+                                    @{
+
+                                        if (sta == "On Progress")
+                                        {
+                                            <label class="badge badge-gradient-primary">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                        }
+                                        else if (sta == "Done")
+                                        {
+                                            <label class="badge badge-gradient-dark">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                        }
+                                    }
+                                </td>
+
+
+                                <td>
+                                    <a class="btn btn-secondary btn-sm col mb-1" asp-action="SDetails" asp-route-id="@item.reqForm.Id">Details</a>
+                                </td>
+
+                            </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@page
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Two-factor authentication (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+
+<div class="col-xl-11 order-xl-1 pl-0 pr-0">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"><i class="bi-shield-lock-fill"></i> Two-factor authentication (2FA)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+                <h6 class="heading-small text-muted mb-4">Authenticator app</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @if (Model.Is2faEnabled)
+                            {
+                                if (Model.RecoveryCodesLeft == 0)
+                                {
+                                    <div class="alert alert-danger">
+                                        <strong>You have no recovery codes left.</strong>
+                                        <p>You must <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a> before you can log in with a recovery code.</p>
+                                    </div>
+                                }
+                                else if (Model.RecoveryCodesLeft == 1)
+                                {
+                                    <div class="alert alert-danger">
+                                        <strong>You have 1 recovery code left.</strong>
+                                        <p>You can <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+                                    </div>
+                                }
+                                else if (Model.RecoveryCodesLeft <= 3)
+                                {
+                                    <div class="alert alert-warning">
+                                        <strong>You have @Model.RecoveryCodesLeft recovery codes left.</strong>
+                                        <p>You should <a asp-page="./GenerateRecoveryCodes">generate a new set of recovery codes</a>.</p>
+                                    </div>
+                                }
+                                if (Model.IsMachineRemembered)
+                                {
+                                    <div class="row mt-1 mb-1">
+                                        <div class="col ">
+                                            <form method="post" style="display: inline-block">
+                                                <button type="submit" class="btn btn-primary w-auto pl-4 pr-4">Forget this browser</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="row mt-1">
+                                    <div class="col ">
+                                        <a asp-page="./Disable2fa" class="btn btn-primary w-auto pl-4 pr-4 mb-1">Disable 2FA</a>
+                                        <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary w-auto pl-4 pr-4 mb-1">Reset recovery codes</a>
+                                    </div>
+                                </div>
+                            }
+                            @if (!Model.HasAuthenticator)
+                            {
+                                <div class="row mt-1">
+                                    <div class="col ">
+                                        <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-auto pl-4 pr-4">Add authenticator app</a>
+                                        </div>
+                                    </div>
+                                        }
+                                        else
+                                        {
+                                        <div class="row mt-1">
+                                            <div class="col ">
+                                                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-auto pl-4 pr-4">Setup authenticator app</a>
+                                                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary w-auto pl-4 pr-4">Reset authenticator app</a>
+                                            </div>
+                                        </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

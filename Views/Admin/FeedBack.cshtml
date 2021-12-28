@@ -1,0 +1,35 @@
+﻿@model Ataa.Models.RequestForm
+@{
+    ViewData["Title"] = "FeedBack";
+
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="card border-bottom border-info border-5 h-75">
+    <form id="regForm" asp-action="FeedBack" asp-controller="Admin" style="width:100%;padding:0;">
+        <input type="hidden" asp-for="StartDate" />
+        <input type="hidden" asp-for="EndDate" />
+        <input type="hidden" asp-for="StartTime" />
+        <input type="hidden" asp-for="EndDate" />
+        <input type="hidden" asp-for="Service" />
+        <input type="hidden" asp-for="NumberOfGrantee" />
+        <input type="hidden" asp-for="Location" />
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="StatusId" />
+        <input type="hidden" asp-for="IsCalculated" />
+
+        <div class="form-group">
+            <h4 class="text-center p-3 pb-0 bg-gradient-info text-white" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">FeedBack</h4>
+            <textarea style="height:370px;font-size:18px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" asp-for="Feedback" class="form-control p-0" required> </textarea>
+            <span asp-validation-for="Feedback" class="text-danger"></span>
+        </div>
+        <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-gradient-secondary w-auto" style="border-radius:4px">
+            <div class="d-sm-flex">
+                <span>
+                    <input type="submit" value="Send" class="btn btn-lg btn-light w-auto text-muted" />
+                </span>
+            </div>
+        </div>
+    </form>
+</div>

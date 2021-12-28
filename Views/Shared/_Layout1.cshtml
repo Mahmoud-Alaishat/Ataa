@@ -1,0 +1,228 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin - @ViewData["Title"]</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/assets1/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets1/vendors/css/vendor.bundle.base.css">
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/assets1/css/style.css">
+    <!-- End layout styles -->
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+
+    <link rel="shortcut icon" href="~/assets/img/ataaicon.png" />
+    <style>
+        .container-scroller .page-body-wrapper .sidebar .nav .nav-item .nav-link .menu-title {
+            display: inline-block;
+            font-size: 0.875rem;
+            line-height: 1;
+            vertical-align: middle;
+            color: #4cb568;
+            font-family: "ubuntu-medium", sans-serif;
+        }
+
+        .sidebar .nav .nav-item .nav-link i.menu-icon {
+            font-size: 1.125rem;
+            line-height: 1;
+            margin-left: auto;
+            color: #4cb568;
+
+        }
+        #navbar ul li a{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size:17px
+              
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header" class="d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center">
+
+            @*<h1 style="margin-left:60px" class="logo me-auto"><a href="index.html">ATAA</a></h1>*@
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <img style="width:90px;height:90px;" src="~/images/ataaicon.png" alt="" class="logo d-inline ml-3" /> <h1 class="logo me-auto"><a href="index.html">ATAA</a></h1>
+            <nav id="navbar" class="navbar">
+
+                <ul>
+                    <li><a class="nav-link scrollto active" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+
+                    <li style="margin-right:70px" class="dropdown">
+                        <a href="#"><span>Test Unit</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li class="dropdown">
+                                <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Drop Down 1</a></li>
+                                    <li><a href="#">Deep Drop Down 2</a></li>
+                                    <li><a href="#">Deep Drop Down 3</a></li>
+                                    <li><a href="#">Deep Drop Down 4</a></li>
+                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                        </ul>
+                    </li>
+
+
+                    <partial name="_LoginPartial" />
+                </ul>
+                <a class="nav-link">
+                    <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                </a>
+
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas rounded-3" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="#" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="~/assets/img/team/team-1.png" alt="profile">
+                                <span class="login-status online"></span>
+                                <!--change to offline or busy as needed-->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">@User.Identity.Name</span>
+                                <span class="text-secondary text-small">CEO</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Statistics">
+                            <span class="menu-title">Statistics</span>
+                            <i class="mdi mdi-chart-bar menu-icon"></i>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Requests">
+                            <span class="menu-title">Requests</span>
+                            <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="UsersList">
+                            <span class="menu-title">Users</span>
+                            <i class="mdi mdi-contacts menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Job">
+                            <span class="menu-title">Jobs</span>
+                            <i class="mdi mdi-table-large menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="CreateRole">
+                            <span class="menu-title">Roles</span>
+                            <i class="mdi mdi-account-star menu-icon"></i>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item sidebar-actions">
+                        <span class="nav-link">
+                            <div class="border-bottom">
+                                <h6 class="font-weight-normal mb-3">Admins</h6>
+                            </div>
+                            <a class="nav-item nav-link" asp-area="" asp-controller="Admin" asp-action="Admins">
+                                <span class="menu-title">Admins</span>
+                                <i class="mdi mdi-account-supervisor menu-icon float-end"></i>
+                            </a>
+                            <button class="btn btn-block btn-lg btn-success mt-4">+ Add an Admin</button>
+
+                        </span>
+                    </li>
+
+                    <div class="border-bottom mb-2"></div>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button style="border-color:white" type="submit" class="btn btn-danger col-9 ml-4 p-3"><i class="mdi mdi-logout"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper" style="background: linear-gradient(183deg, rgba(114,239,146,1) 0%, rgba(94,207,168,1) 44%, rgba(100,223,133,1) 100%);
+    padding: 2.0rem 2.0rem; width: 100%; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1;">
+                    <div class="page-header">
+                        <h3 class="page-title text-white">
+                            <span style="background-color: #68d987 " class="page-title-icon  text-white mr-2">
+                                <i class="mdi mdi-home"></i>
+                            </span> @ViewData["Title"]
+                        </h3>
+                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- plugins:js -->
+    <script src="assets1/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="assets1/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets1/js/off-canvas.js"></script>
+    <script src="assets1/js/hoverable-collapse.js"></script>
+    <script src="assets1/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="assets1/js/dashboard.js"></script>
+    <script src="assets1/js/todolist.js"></script>
+    <!-- End custom js for this page -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

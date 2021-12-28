@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Ataa.Models.RequestUser>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+@if (ViewBag.haveServices == true)
+{
+    <div class="col-12 p-2 ">
+        @foreach (var item in Model)
+        {
+            
+                <div class="row pr-0 pl-0">
+                    <div class="col-12 grid-margin stretch-card pr-0 pl-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex ">
+                                    <div class="d-flex align-items-center mr-4">
+                                        <img src="~/assets/img/team/team-1.png" class="img-sm rounded-circle mr-3" alt="image">
+                                        <div>
+                                            <span class="font-weight-normal">@Html.DisplayFor(modelItem => item.user.FirstName) @Html.DisplayFor(modelItem => item.user.LastName)</span>
+                                            <span style="font-size:13px" class="d-flex align-bottom mt-1 text-muted font-weight-light">&commat;@Html.DisplayFor(modelItem => item.user.UserName)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mt-4 justify-content-between align-items-end">
+                                    <div class=" d-sm-flex justify-content-start">
+                                        <div class="d-flex align-items-center text-muted font-weight-light  ">
+                                            <i class="mdi mdi-clock icon-sm mr-2"></i>
+                                            <span>@Html.DisplayFor(modelItem => item.ReqForm.StartDate)<i class="mdi mdi-rhombus-split icon-sm mr-1 ml-1"></i>@Html.DisplayFor(modelItem => item.ReqForm.EndDate)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mt-4 align-items-top">
+                                    <div class="mb-0 flex-sm-grow">
+                                        <p class="mb-0 font-weight-light">@Html.DisplayFor(modelItem => item.ReqForm.Service)</p>
+                                    </div>
+                                </div>
+                                @*<div class="d-sm-flex mt-4 justify-content-between align-items-end">
+                                        <div class=" d-sm-flex justify-content-start">
+                                            <div class="d-sm-flex align-items-center text-muted font-weight-light">
+                                                <i class="mdi mdi-door-open icon-sm mr-2"></i>
+                                                <span>open</span>
+                                            </div>
+                                            <div class="d-sm-flex align-items-center ml-4 text-muted font-weight-light">
+                                                <i class="mdi mdi-crosshairs-gps icon-sm mr-2"></i>
+                                                <span>@Html.DisplayFor(modelItem => item.ReqForm.Location)</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-sm-flex justify-content-end">
+                                            <a class="btn btn-lg btn-success w-auto float-sm-right" asp-action="ServiceDetails" asp-route-id="@item.ReqForm.Id">Show Details</a>
+                                        </div>
+                                    </div>*@
+
+                                <div class="d-flex mt-2 justify-content-between align-items-end">
+                                    <div class=" d-sm-flex justify-content-start">
+                                       
+                                        @*<div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                            <span>
+                                                <i class="mdi mdi-door-closed icon-sm mr-2"></i>
+                                                <span>closed</span>
+                                            </span>
+                                        </div>
+                                       
+                                        <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                            <span>
+                                                <i class="mdi mdi-door-open icon-sm mr-2"></i>
+                                                <span>open</span>
+                                            </span>
+                                        </div>*@
+                                    
+                                        <div class="d-flex align-items-center text-muted font-weight-light  pt-1 pb-1">
+                                            <span>
+                                                <i class="mdi mdi-crosshairs-gps icon-sm mr-2"></i>
+                                                <span>@Html.DisplayFor(modelItem => item.ReqForm.Location)</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-lg btn-success w-auto float-md-right mr-sm-3" asp-action="ServiceDetails" asp-route-id="@item.ReqForm.Id">Show Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        }
+
+    </div>
+}
+else
+{
+<div class="row pr-md-0 pl-md-0 pt-3">
+    <div class="card pr-0 pl-0 ">
+            <div class="d-flex justify-content-between pl-0 pr-0">
+                <div class="col pl-0 pr-0">
+                    <div class="card-header bg-white border-0 pl-0 pr-0 pt-0 pb-0">
+                        <h2 style="font-size: 25px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; line-height: 1.5;color:#71CD80" class="text-center pt-4 pl-2 pr-2">There are no services available now please come back later or you can provide a service <a class="btn font-monospace font-weight-bolder" style="background-color: #71CD80;color:white;font-size:18px" asp-action="Create" asp-controller="RequestForms">HERE</a></h2>
+                    </div>
+                    <div style="width:100%;height:550px" class="card-body bg-white border-0 pl-0 pr-0 pt-0 pb-0 justify-content-between">
+                        <img src="~/assets/img/rain.png" style="width:100%;height:100%" />
+                    </div>
+                </div>
+           </div>
+    </div>
+</div>
+        
+}
+

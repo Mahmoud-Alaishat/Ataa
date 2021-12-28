@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Ataa.Models.RequestStatus>
+@{
+    ViewData["Title"] = "Requests";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin pl-0 pr-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Services Requests</h4>
+                <div class="table-responsive">
+                    <table style="table-layout:fixed;" class="table">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    Start Date
+                                </th>
+                                <th>
+                                    End Date
+                                </th>
+                               
+                                <th>
+                                    Number Of Grantee
+                                </th>
+                                <th>
+                                    Service
+                                </th>
+                               
+                               
+                                <th>
+                                    Status
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.reqForm.StartDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.reqForm.EndDate)
+                                    </td>
+                                    
+                                    <td class="text-center">
+                                        @Html.DisplayFor(modelItem => item.reqForm.NumberOfGrantee)
+                                    </td>
+                                    <td width="20" style=" text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                                        @Html.DisplayFor(modelItem => item.reqForm.Service)
+                                    </td>
+                                   
+
+                                    <td>
+                                        @{
+                                            string sta = item.status.StatusName;
+                                            if (sta == "On review")
+                                            {
+                                                <label class="badge badge-gradient-info">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                            }
+                                            else if (sta == "Missing Information")
+                                            {
+                                                <label class="badge badge-gradient-warning">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                            }         
+                                        }
+                                    </td>
+
+
+                                    <td>
+                                        <div class="d-flex mb-1">
+                                            <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.reqForm.Id">Details</a>
+                                            <a class="btn btn-warning btn-sm  ml-1" asp-action="FeedBack" asp-route-id="@item.reqForm.Id">FeedBack</a>
+                                        </div>
+                                        <div class="d-flex">
+                                            <form asp-controller="Admin" asp-action="Reject">
+                                                <div class="form-group mb-0">
+                                                    <input type="hidden" asp-for="@item.reqForm.Id" />
+                                                    <input type="submit" value="Reject" class="btn btn-danger btn-sm" asp-controller="Admin" asp-action="Reject" asp-route-id="@item.reqForm.Id" />
+                                                </div>
+                                            </form>
+
+                                            <form asp-controller="Admin" asp-action="Approve">
+                                                <div class="form-group mb-0">
+                                                    <input type="hidden" asp-for="@item.reqForm.Id" />
+                                                    <input type="submit" value="Approve" class="btn btn-success btn-sm ml-1" asp-controller="Admin" asp-action="Approve" asp-route-id="@item.reqForm.Id" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

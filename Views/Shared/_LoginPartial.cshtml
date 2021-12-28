@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @*<li class="nav-item">
+            <a class="nav-link text-white ml-4" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn text-white mb-2 w-auto border-white rounded">Logout</button>
+            </form>
+        </li>*@
+
+    <li class="dropdown">
+        <div>
+            <a class="nav-link scrollto">
+                <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color: #4cb568;font-weight:500">@User.Identity.Name</span>
+                <img style="width:45px;height:45px;border-radius:50px;margin-left:5px" src="~/assets/img/team/team-1.png" alt="image">
+                @*<i class="bi bi-chevron-down"></i>*@
+            </a>
+        </div>
+        <ul style="border-radius:6px">
+            @*<li>
+            <a class="nav-link scrollto" asp-controller="RequestForms" asp-action="Profile">Profile</a>
+        </li>
+        <li>
+            <a class="nav-link scrollto" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+        </li>*@
+            @if (User.IsInRole("User"))
+            {
+
+                <li><a class="nav-link scrollto" asp-area="" asp-controller="RequestForms" asp-action="Index">My Space</a></li>
+            }
+            <li>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button style="border-color:white" type="submit" class="btn btn-danger  col-9 ml-4 "><i class="mdi mdi-logout"></i> Logout</button>
+                </form>
+            </li>
+
+        </ul>
+    </li>
+
+    
+}
+else
+{
+    <li>
+        <a class="nav-link scrollto" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+    </li>
+        
+        <li>
+            <a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Register">Register</a>
+         </li>
+    @*<li class="nav-item">
+            <a class="nav-link  text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>*@
+}

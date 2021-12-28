@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Ataa.Models.RequestStatus>
+
+@{
+    ViewData["Title"] = "My Requests";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
+
+
+<div class="row">
+    <div class="col-12 grid-margin pr-0 pl-0">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">My Requests</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    RequestID
+                                </th>
+                                <th>
+                                    Start Date
+                                </th>
+                                <th>
+                                    End Date
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                string sta = item.status.StatusName;
+
+
+                                if (sta == "On review" || sta == "Approved" || sta == "Rejected" || sta == "Missing Information")
+                                {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.EndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.reqForm.Location)
+                                </td>
+
+                                <td>
+                                    @{
+
+                                        if (sta == "On review")
+                                        {
+                                            <label class="badge badge-gradient-info">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                        }
+                                        else if (sta == "Approved")
+                                        {
+                                            <label class="badge badge-gradient-success">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+                                        }
+                                        else if (sta == "Rejected")
+                                        {
+                                            <label class="badge badge-gradient-danger">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+
+                                        }
+                                        else if (sta == "Missing Information")
+                                        {
+                                            <label class="badge badge-warning">@Html.DisplayFor(modelItem => item.status.StatusName) </label>
+
+                                        }
+                                    }
+                                </td>
+
+
+                                <td>
+                                    <a class="btn btn-secondary btn-sm col mb-1" asp-action="RDetails" asp-route-id="@item.reqForm.Id">Details</a>
+                                    <div class="d-flex">
+                                        <a class="btn btn-danger btn-sm col" asp-action="Delete" asp-route-id="@item.reqForm.Id">Delete</a>
+                                        @{
+                                            if (string.IsNullOrEmpty(item.reqForm.Feedback))
+                                            {
+                                                <a class="btn btn-secondary btn-sm ml-1 disabled col" asp-action="Edit" asp-route-id="@item.reqForm.Id">Edit</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-info btn-sm ml-1 col" asp-action="Edit" asp-route-id="@item.reqForm.Id">Edit</a>
+                                            }
+                                        }
+                                    </div>
+                                </td>
+
+                            </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

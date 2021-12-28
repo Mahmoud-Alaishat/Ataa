@@ -1,0 +1,121 @@
+﻿@model Ataa.Models.User
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+
+<div class="main-content bg-white">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <!-- Form -->
+            <!-- User -->
+            <ul class="navbar-nav  d-flex mr-2 float-right">
+
+                <li class="dropdown d-flex mr-4 ">
+                    <div class="media align-items-center">
+                        <span class="avatar avatar-sm rounded-circle ml-2">
+                            <img alt="Image placeholder" src="~/assets/img/team/team-1.png">
+                        </span>
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold text-white">@ViewBag.fullName</span>
+                        </div>
+                    </div>
+                    <ul class="mr-5 justify-content-center" style="border-radius:6px">
+                        <li>
+                            <a class="nav-link scrollto text-black-50 pl-4 font-weight-bold" asp-controller="RequestForms" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link scrollto text-black-50 pl-4 font-weight-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+                        </li>
+
+                        <li>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button style="border-color:white" type="submit" class="btn btn-danger  col-9 ml-4 ">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 290px; background-image: url(assets/img/slide/slide-1.jpg); background-size: cover; background-position: center top;">
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <h1 class="display-2 text-white font-monospace">Welcome @ViewBag.fName</h1>
+                    <p class="text-white mt-0 mb-2" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">A New Day Is A New Chance So Do Your Best</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container w-100 p-0">
+        <div class="col w-100 p-0">
+            <div class="col w-100 p-0">
+                <div class="card card-profile w-100 p-0" style="border-color:transparent">
+                    <div class="row justify-content-center pb-5">
+                        <div class="col-lg-3 order-lg-2">
+                            <div class="card-profile-image">
+                                <a href="#">
+                                    <img src="~/assets/img/team/team-1.png" class="rounded-circle">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body pt-5 pt-md-4">
+                        <div class="row mt-5">
+                            <div class="col">
+                                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                    <div>
+                                        <span class="heading">@ViewBag.requestCounts</span>
+                                        <span class="description">Services</span>
+                                    </div>
+                                    <div>
+                                        <span class="heading">@ViewBag.GranteesN</span>
+                                        <span class="description">Benefited People</span>
+                                    </div>
+                                    <div>
+                                        <span class="heading text-nowrap">@ViewBag.donatedTimeh h @ViewBag.donatedTimem m</span>
+                                        <span class="description">Donated Time</span>
+                                    </div>
+                                    <div>
+                                        <span class="heading">@Model.ClockCoin</span>
+                                        <span class="description">Clock Coins</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3>
+                                @ViewBag.fullName<span class="font-weight-light">, 21</span>
+                            </h3>
+                            <div class="h5 font-weight-300">
+                                <i class="ni location_pin mr-2"></i>Amman, Jordan
+                            </div>
+                            <div class="h5 mt-4">
+                                <i class="ni business_briefcase-24 mr-2"></i>@ViewBag.Job
+                            </div>
+
+                            <div>
+                                <i class="ni education_hat mr-2"></i>Ataa
+                            </div>
+                            <hr class="my-4">
+                            <p>About Me</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

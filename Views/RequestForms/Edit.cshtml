@@ -1,0 +1,104 @@
+﻿@model Ataa.Models.RequestForm
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="row h-75 pr-0 pl-0">
+        <div class="card bg-white shadow">
+            <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    <div class="col-sm-8">
+                        <h3 class="mb-0"><i class="bi-pencil-square"></i> Edit Request</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" style="background-color: #57a3d1;border-radius:6px">
+                <form id="profile-form" method="post" asp-action="Edit">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="StatusId" />
+                    <input type="hidden" asp-for="UserId" />
+                    <input type="hidden" asp-for="Feedback" />
+                    <input type="hidden" asp-for="IsCalculated" />
+                    
+                    <h6 class="heading-small text-white mb-4 font-weight-bold">Request information</h6>
+                    <div class="pl-lg-4 pr-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group focused">
+                                    <label class="form-control-label text-white" for="input-username">Start Date</label>
+                                    <input asp-for="StartDate" id="input-username" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label text-white" for="input-email">End Date</label>
+                                    <input asp-for="EndDate" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl-lg-4 pr-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group focused">
+                                    <label class="form-control-label text-white" for="input-username">Start Time</label>
+                                    <input asp-for="StartTime" id="input-username" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="StartTime" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label text-white" for="input-email">End Time</label>
+                                    <input asp-for="EndTime" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl-lg-4 pr-lg-4">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group focused">
+                                    <label class="form-control-label text-white" for="input-username">Number Of Grantee</label>
+                                    <input asp-for="NumberOfGrantee" id="input-username" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="NumberOfGrantee" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label text-white" for="input-email">Location</label>
+                                    <input asp-for="Location" class="form-control form-control-alternative rounded-2" />
+                                    <span asp-validation-for="Location" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pl-sm-0 pr-sm-0">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group focused">
+                                    <label class="form-control-label text-white" for="input-username">Service</label>
+                                    <textarea id="input-username" style="height:300px;border-radius:6px" asp-for="Service" class="form-control form-control-alternative" required> </textarea>
+                                    <span asp-validation-for="Service" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex">
+                            <button id="update-profile-button" type="submit" class="btn btn-light text-info w-auto align-items-center rounded-2">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

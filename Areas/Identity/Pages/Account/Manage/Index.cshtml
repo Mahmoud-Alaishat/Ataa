@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="col-xl-11 order-xl-1 pl-0 pr-0">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0"><i class="bi-person-circle"></i> Profile</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form id="profile-form" method="post">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group focused">
+                                <label class="form-control-label" for="input-username">Username</label>
+                                <input asp-for="Username" disabled type="text" id="input-username" class="form-control form-control-alternative" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Phone Number</label>
+                                <input asp-for="Input.PhoneNumber" class="form-control form-control-alternative" />
+                                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex">
+                        <button id="update-profile-button" type="submit" class="btn btn-primary w-auto pl-4 pr-4 align-items-center">Save</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,161 @@
+﻿@model Ataa.Models.RequestForm
+
+@{
+    ViewData["Title"] = "Service Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<div class="col pl-0 pr-0 h-75">
+    <div class="row h-100">
+        <div class="col-12 h-100">
+            <div class="card h-100">
+                <div class="card-body h-100">
+                    <div class="d-flex mt-2 justify-content-between align-items-end">
+                        <div class=" d-sm-flex justify-content-start">
+                            <div class="d-flex align-items-center text-muted font-weight-light  ">
+                                <span>
+                                    <i class="bi bi-person-fill icon-sm mr-2 "></i>
+                                    Donator: @ViewBag.fullname
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-2 justify-content-between align-items-end">
+                        <div class=" d-sm-flex justify-content-start">
+                            <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                <i class="mdi mdi-calendar icon-sm mr-2"></i>
+                                <span>Start Date: @Html.DisplayFor(model => model.StartDate)</span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                <span>
+                                    <i class="mdi mdi-calendar-star icon-sm mr-2"></i>
+                                    End Date: @Html.DisplayFor(model => model.EndDate)
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                <span>
+                                    <i class="mdi mdi-clock icon-sm mr-2"></i>
+                                    Start Time: @Html.DisplayFor(model => model.StartTime)
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                <span>
+                                    <i class="mdi mdi-clock icon-sm mr-2"></i>
+                                    End Time: @Html.DisplayFor(model => model.EndTime)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mt-2 justify-content-between align-items-end">
+                        <div class=" d-sm-flex justify-content-start">
+                            <div class="d-flex align-items-center text-muted font-weight-light mr-md-5 pt-1 pb-1">
+                                <span>
+                                    <i class="mdi mdi-crosshairs-gps icon-sm mr-2"></i>
+                                    Location: @Html.DisplayFor(model => model.Location)
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center text-muted font-weight-light  pt-1 pb-1">
+                                <span>
+                                    <i class="bi bi-people-fill icon-sm mr-2"></i>
+                                    Number Of Grantee: @ViewBag.AttCount / @Html.DisplayFor(model => model.NumberOfGrantee)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr />
+                    <div class="d-flex mt-1 justify-content-between align-items-end">
+                        <div class=" d-sm-flex justify-content-start">
+                            <div class="d-flex align-items-center text-muted font-weight-light  ">
+                                <span>
+                                    <i class="bi bi-gift-fill icon-sm mr-2"></i>
+                                    Service Description:<br /><br />@Html.DisplayFor(model => model.Service)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        if (ViewBag.isApplied == true && ViewBag.AttCount < Model.NumberOfGrantee)
+        {
+            <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-gradient-dark w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-success w-auto ml-2" asp-action="Apply" asp-route-id="@Model.Id">Apply</a>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex pt-1 pb-2 pr-2 justify-content-start bg-transparent w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-light w-auto text-muted mb-2" asp-action="Index">Back</a>
+                    </span>
+                </div>
+            </div>
+        }
+
+
+        else if (ViewBag.isApplied == true && ViewBag.AttCount == Model.NumberOfGrantee)
+        {
+            <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-gradient-dark w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-secondary w-auto ml-2" asp-action="Apply" asp-route-id="@Model.Id" style="pointer-events: none">Filled!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex pt-1 pb-2 pr-2 justify-content-start bg-transparent w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-light w-auto text-muted mb-2" asp-action="Index">Back</a>
+                    </span>
+                </div>
+            </div>
+
+        }
+        else if (ViewBag.isApplied == false && ViewBag.AttCount <= Model.NumberOfGrantee)
+        {
+            <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-gradient-dark w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-secondary w-auto ml-2" asp-action="Apply" asp-route-id="@Model.Id" style="pointer-events: none">Joined!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex pt-1 pb-2 pr-2 justify-content-start bg-transparent w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-light w-auto text-muted mb-2" asp-action="Index">Back</a>
+                    </span>
+                </div>
+            </div>
+
+        }
+        
+        else
+        {
+            <div class="d-flex pt-2 pb-2 pr-2 pl-2 justify-content-center bg-gradient-dark w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-secondary w-auto ml-2" asp-action="Apply" asp-route-id="@Model.Id" style="pointer-events: none">Joined!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex pt-1 pb-2 pr-2 justify-content-start bg-transparent w-auto" style="border-radius:4px">
+                <div class="d-sm-flex">
+                    <span>
+                        <a class="btn btn-lg btn-light w-auto text-muted mb-2" asp-action="Index">Back</a>
+                    </span>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+
